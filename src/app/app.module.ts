@@ -10,6 +10,14 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {ImagePicker} from '@ionic-native/image-picker';
+class ImagePickerMock extends ImagePicker {
+  getPictures(options) {
+    return new Promise((resolve, reject) => {
+      resolve("BASE_64_ENCODED_DATA_GOES_HERE");
+    })
+  }
+}
 
 @NgModule({
   declarations: [
@@ -34,6 +42,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: ImagePicker, useClass: ImagePickerMock },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
