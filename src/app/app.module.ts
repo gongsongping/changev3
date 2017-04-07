@@ -1,49 +1,95 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, ErrorHandler, enableProdMode } from '@angular/core';
+
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { Home } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { Tabs } from '../pages/tabs/tabs';
+import { Buy } from '../pages/buy/buy';
+import { Sell } from '../pages/sell/sell';
+import { Mine } from '../pages/mine/mine';
+import { Login } from '../pages/login/login';
+import { Housedetails } from '../pages/housedetails/housedetails';
+import { Precise } from '../pages/precise/precise';
+import { Sellcommission } from '../pages/sellcommission/sellcommission';
+import { Sellrecord } from '../pages/sellrecord/sellrecord';
+import { About } from '../pages/about/about';
+import { Consultant } from '../pages/consultant/consultant';
+import { Servicecall } from '../pages/servicecall/servicecall';
+import { Visitrecord } from '../pages/visitrecord/visitrecord';
+import { Districtdetails } from '../pages/districtdetails/districtdetails';
+import { Message } from '../pages/message/message';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import {ImagePicker} from '@ionic-native/image-picker';
-class ImagePickerMock extends ImagePicker {
-  getPictures(options) {
-    return new Promise((resolve, reject) => {
-      resolve("BASE_64_ENCODED_DATA_GOES_HERE");
-    })
-  }
-}
+import { NestedCom, House, TestService, ImgPipe, HouseTypePipe, Distribution } from '../providers/services';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { SplashScreen }  from  "@ionic-native/splash-screen"
+import { StatusBar }  from  "@ionic-native/status-bar"
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+
+
+// let prodMode: boolean = window.hasOwnProperty('cordova');//!!window.cordova;
+// ionicBootstrap(MyApp, [], {prodMode: prodMode});
+// import {enableProdMode} from '@angular/core';
+enableProdMode();
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     Home,
-    TabsPage
+    Buy,
+    Sell,
+    Mine,
+    Login,
+    Housedetails,
+    Precise,
+    Tabs,
+    ImgPipe,
+    NestedCom,
+    House,
+    Distribution,
+    Sellrecord,
+    Sellcommission,
+    About,
+    Consultant,
+    Servicecall,
+    Visitrecord,
+    HouseTypePipe,
+    Districtdetails,
+    Message
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpModule,
+    BrowserAnimationsModule,
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: true,
+      backButtonText: ''
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     Home,
-    TabsPage
+    Buy,
+    Sell,
+    Mine,
+    Login,
+    Housedetails,
+    Precise,
+    Tabs,
+    Sellrecord,
+    Sellcommission,
+    About,
+    Consultant,
+    Servicecall,
+    Visitrecord,
+    Districtdetails,
+    Message
   ],
   providers: [
-    StatusBar,
     SplashScreen,
-    { provide: ImagePicker, useClass: ImagePickerMock },
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    StatusBar,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }, TestService]
 })
-export class AppModule {}
+export class AppModule { }

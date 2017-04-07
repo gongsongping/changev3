@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/v2/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +12,416 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+[placeholder] {
+    font-size:0.9em;
+    color:grey;
+}
+a{
+    text-decoration:none;
+}
+.flex-column {
+    display: -webkit-flex;
+    /* Safari */
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-x-center {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.flex-y-center {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.flex-center-center {
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+//tabs red
+.tab-img-size {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    height: 22px !important;
+    // width: 23px !important;
+    // margin: 4px !important;
+    // height: 32px;
+    // padding: 6px 4px 2px;
+    opacity: 0.9;
+}
+//home
+.ion-ios-homebhhf-outline {
+    background-image: url('../assets/img/sprite-h-23/home-off.png');
+    @extend .tab-img-size
+}
+
+.ion-ios-homebhhf {
+    background-image: url('../assets/img/sprite-h-23/home-on.png');
+    @extend .tab-img-size
+}
+
+.ion-md-homebhhf {
+    background-image: url('../assets/img/sprite-h-23/home-off.png');
+    @extend .tab-img-size
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-homebhhf {
+        background-image: url('../assets/img/sprite-h-23/home-on.png');
+    }
+}
+//buy
+.ion-ios-buybhhf-outline {
+    background-image: url('../assets/img/sprite-h-23/buy-off.png');
+    @extend .tab-img-size
+}
+
+.ion-ios-buybhhf {
+    background-image: url('../assets/img/sprite-h-23/buy-on.png');
+    @extend .tab-img-size
+}
+
+.ion-md-buybhhf {
+    background-image: url('../assets/img/sprite-h-23/buy-off.png');
+    @extend .tab-img-size
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-buybhhf {
+        background-image: url('../assets/img/sprite-h-23/buy-on.png');
+    }
+}
+//sell
+.ion-ios-sellbhhf-outline {
+    background-image: url('../assets/img/sprite-h-23/sell-off.png');
+    @extend .tab-img-size
+}
+
+.ion-ios-sellbhhf {
+    background-image: url('../assets/img/sprite-h-23/sell-on.png');
+    @extend .tab-img-size
+}
+
+.ion-md-sellbhhf {
+    background-image: url('../assets/img/sprite-h-23/sell-off.png');
+    @extend .tab-img-size
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-sellbhhf {
+        background-image: url('../assets/img/sprite-h-23/sell-on.png');
+    }
+}
+//mine
+.ion-ios-minebhhf-outline {
+    background-image: url('../assets/img/sprite-h-23/mine-off.png');
+    @extend .tab-img-size
+}
+
+.ion-ios-minebhhf {
+    background-image: url('../assets/img/sprite-h-23/mine-on.png');
+    @extend .tab-img-size
+}
+
+.ion-md-minebhhf {
+    background-image: url('../assets/img/sprite-h-23/mine-off.png');
+    @extend .tab-img-size
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-minebhhf {
+        background-image: url('../assets/img/sprite-h-23/mine-on.png');
+    }
+}
+
+// .ion-ios-homebhhf,
+// .ion-md-homebhhf {
+//   content: url(../assets/img/home_pre_home.svg);
+//   width: 24px;
+//   height: 32px;
+//   padding: 6px 4px 2px;
+//   opacity: 0.9;
+// }
+// .ion-ios-homebhhf-outline,
+// .ion-md-homebhhf-outline {
+//   content: url(../assets/img/home_home.svg);
+//   width: 24px;
+//   height: 32px;
+//   padding: 6px 4px 2px;
+//   opacity: 0.9;
+// }
+.select-buy-tab {
+    border-bottom:1px solid #265fdf;
+    color:#265fdf !important;
+}
+//无数据提示
+.prompt{
+    text-align: center;
+    margin-top: 50%; 
+    .icon{
+        width: 50px;
+        margin-top: 100px;
+        font-size: 60px;
+        color: lightgray;
+        margin: 0 auto;
+    }
+    p{
+        width:100%;
+        padding:0 20%;
+        color:lightgray;
+        margin: 0;
+    }
+}
+// 头部选项
+.record-select {
+        height: 44px;
+        padding: 0 15px;
+        justify-content: space-between;
+        display: flex;
+        position: relative;
+        z-index: 9;
+        border-top:1px solid #f0f2f6;
+        width: 100%;
+        background-color: #fff;
+        p {
+            margin: 0;
+            width: 40%;
+            text-align: center;
+            line-height: 44px;
+        }
+        .tabP {
+            border-bottom: solid 2px #265fdf;
+            color: #265fdf;
+        }
+        .spacing{
+            width: 1px;
+            height: 16px;
+            background-color: #e6e6e6;
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 15px;
+            z-index: 7;                         
+        }
+    }
+// 卖房看房记录    
+.visit-record {
+        box-shadow: 0px 6px 6px #e4ebf8;
+        margin-top: 10px;
+        .record-1 {
+            border-color: #f0f2f6;
+            padding: 10px;
+            overflow: hidden;
+            .number {
+                float:left;
+                font-size: 0.8em;
+                color: lightgray;
+            }
+            .status {
+                float: right;
+                color:#265fdf;
+                font-size:0.9em;
+            }
+        }
+        .record-block{
+            border-top: 1px solid #f0f2f6;
+            border-bottom: 1px solid #f0f2f6;
+        }
+        .record-3 {
+            padding:10px;
+            border-top: 1px solid #f0f2f6;
+            display:flex;
+            .title {
+                color: lightgray;
+                font-size:1em;
+                display:block;
+                width:90px;
+                line-height: 30px;
+            }
+            .distribution {
+                width:100%;
+                font-size:1em;
+                color:black;
+                line-height: 30px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .telnumber {
+                font-size:0.9em;
+            }
+            .phone {
+                .icon {
+                    color: #265fdf;
+                    font-size: 2em;
+                }
+            }
+            .pay{
+                font-size:0.8em;
+                float:right;
+                .charge{
+                    color:tomato;
+                }
+            }
+        }
+        .record-4 {
+            padding:5px;
+            border-color: #f0f2f6;
+            overflow: hidden;
+            .group {
+                float: right;
+            }
+        }
+    }
+    .visit-record:first-of-type{
+        margin-top:0;
+    }    
+// 房源小区详情
+.housedetails {
+        background-color: #F4F5F9;
+        .slide-img{
+            ion-slide{
+                height:160px;
+            }
+            .slide-zoom{
+                height:100%;
+                overflow: hidden;
+                img{
+                    width:100%;
+                    height:100%;
+                }
+            }
+        }
+        .details-1{
+            width:100vw;
+            background-color: #fff;
+            .name{
+                color:#6c727e;
+                font-size:1.2em;
+                padding:1em;
+                font-weight:700;
+                border-top:1px solid #f0f2f6;
+            }
+            .simple-1 {
+                justify-content: space-between;
+                padding:1em 0;
+                .flex-1{
+                    width:50%;
+                    text-indent: 1em;
+                }
+            }
+            .simple {
+                padding: 10px 0;
+                justify-content: space-around;
+                .flex-1{
+                    width:33%;
+                    text-align: center;
+                }
+            }
+            .simple,.simple-1 {
+                border-top:1px solid #f0f2f6;
+                .bor{
+                    border-left:1px solid #f0f2f6;
+                }
+                p {
+                    margin: 0;
+                    padding-top:10px;
+                }
+                h4{
+                    margin: 0;
+                    padding:5px 0;
+                    color: #f16341;
+                }
+            }
+            .calculate{
+                border-top:1px solid #f0f2f6;
+                color:#6c727e;
+                font-size:1em;
+                padding:1em;
+                span{
+                    color:#333;
+                }
+            }
+            .row{
+                .flex-col{
+                    width: 50%;
+                    border-bottom: 1px solid #f0f2f6;
+                }
+                .flex-row{
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                .flex-row,.flex-col{
+                    padding:1em;
+                    color:#6c727e;
+                    span{
+                        color:#333;
+                    }
+                }
+            }
+        } 
+        .details-3{
+            width:100vw;
+            margin-top: 10px;
+            background-color: #fff;
+            overflow: hidden;
+            p{
+                padding:1em;
+                margin: 0;
+                color: grey;
+            }
+            div{
+                margin: 0 1em 1em 1em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 20px;
+            }
+            .description{
+                height: 59px;
+                white-space: pre;
+            }
+            .descriptionAn{
+                height: auto;
+                white-space: pre-line;
+            }
+        } 
+        .map {
+            width:100vw;
+            margin-top: 10px;
+            padding-bottom: 10px;
+            background-color: #fff;
+            .item {
+                padding: 10px;
+                border-top: 1px solid #f0f2f6;
+                border-bottom: 1px solid #f0f2f6;
+                span:first-child {
+                    color: gray;
+                }
+                i {
+                    float: right;
+                }
+            }
+            #housedetails-map,#details-map{
+                width:100vw;
+                height:60vw;
+                background-color: gray;
+            }
+        }
+    }

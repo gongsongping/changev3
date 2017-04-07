@@ -1,0 +1,67 @@
+<!--
+  Generated template for the Mine page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar mode='ios' color='lightprimary'>
+    <ion-title text-center>
+      个人中心
+    </ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only style='position: relative;' [navPush]="message">
+        <img src="assets/img/sprite/system_icon_mine.png" width='30' height='30'>
+        <ion-badge *ngIf="messagesTotal>0" color='danger' style='position: absolute;right:-5px;top:-5px;'>{{messagesTotal}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class='mine-1'>
+    <div style="background-color:#fff;width:21vw;height:21vw;border:2px solid #fff;border-radius:50%;margin:0 auto 15px;">
+      <img src="assets/img/sprite/counselor_btn_pre_mine.png">
+    </div>
+    <!--<div *ngIf='userInfo' style="margin:5px 0px 0px;">
+      <span *ngIf="userInfo.name" style="background-color: #F9D00B;">{{userInfo.name}}</span>&nbsp;&nbsp;
+      <span style="background-color: #F9D00B;">{{userInfo.username}}</span>
+    </div>-->
+    <div *ngIf='userInfo' style="margin:5px 0px 10px;padding:5px;">
+      <span style="background-color: #F9D00B;"><span *ngIf="userInfo.name" >{{userInfo.name}}</span>&nbsp;&nbsp;壁虎好房欢迎您</span>
+    </div>
+    <div>
+      <button *ngIf="userInfo" (click)="logout()" ion-button round small color="light">退出</button>
+      <button *ngIf="!userInfo" [navPush]="login" ion-button round small color="light">登录</button>
+    </div>
+  </div>
+  <div class='mine-2'>
+    <div (click)='goTo(visitrecord)' class='mine-2-item'>
+      <img src="assets/img/sprite/see_btn_mine.png" height='50%' width='50%'>
+      <p>看房记录</p>
+    </div>
+    <div (click)='goTo(sellrecord)' class='mine-2-item'>
+      <img src="assets/img/sprite/sell_btn_mine.png" height='50%' width='50%'>
+      <p>卖房记录</p>
+    </div>
+
+    <div (click)='goTo(consultant)' class='mine-2-item'>
+      <img src="assets/img/sprite/counselor_btn_mine.png" height='50%' width='50%'>
+      <p>我的顾问</p>
+    </div>
+    <div [navPush]='servicecall' class='mine-2-item'>
+      <img src="assets/img/sprite/service_btn_mine.png" height='50%' width='50%'>
+      <p>客服电话</p>
+    </div>
+  </div>
+  <div class="mine-3">
+    <ion-item [navPush]='about' detail-push>
+       <i item-left><img src="assets/img/icon/_0003_about.png" width="25"/></i>
+      关于壁虎
+    </ion-item>
+  </div>
+  <div *ngIf="baseURL=='http://60.205.169.195:7060'||baseURL=='http://60.205.169.195:7069'">
+    <p style="font-size:0.5em;color:tomato;">测试{{baseURL}}</p>
+  </div>
+
+</ion-content>

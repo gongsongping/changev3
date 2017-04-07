@@ -1,7 +1,5 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/v2/theming/
-$font-path: "../assets/fonts";
-
 @import "ionic.globals";
 
 
@@ -22,13 +20,18 @@ $font-path: "../assets/fonts";
 // to match your app's branding. Ionic uses a Sass map of
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
-
+// #387ef5
+// light:      #f4f4f4,
 $colors: (
-  primary:    #387ef5,
+  primary:    #265fdf,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  white:white,
+  grey:grey,
+  lightgrey:lightgrey,
+  lightprimary:#F6F7FB,
 );
 
 
@@ -36,14 +39,25 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
-
+// $tabs-ios-tab-min-height:49px;
+// $toolbar-md-height:44px;
+$item-ios-thumbnail-size:80px;
+$searchbar-ios-background-color: white;
+$searchbar-ios-input-background-color:white;
+$searchbar-ios-toolbar-input-background: white;
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+// $tabs-md-tab-min-height:5.6rem;
+// $toolbar-md-height:56px;
 
+$tabs-md-tab-min-height:49px;
+$toolbar-md-height:44px;
+$searchbar-md-background-color: white;
+$searchbar-md-input-background-color:white;
+$searchbar-md-toolbar-input-background: white;
 
 
 // App Windows Variables
@@ -68,11 +82,5 @@ $colors: (
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/v2/ionicons/
 
-@import "ionic.ionicons";
-
-
-// Fonts
-// --------------------------------------------------
-
-@import "roboto";
-@import "noto-sans";
+$ionicons-font-path: "../assets/fonts";
+@import "ionicons";
