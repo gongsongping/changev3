@@ -15,8 +15,8 @@
 
 <ion-content class="login-bg-img">
   <div class='top'>
-    <h1>壁虎好房</h1>
-    <h5>开启互联网买房卖房新篇章</h5>
+    <!--<h1>壁虎好房</h1>
+    <h5>开启互联网买房卖房新篇章</h5>-->
   </div>
   <div class='bottom' style="padding-top:20px;">
 
@@ -25,13 +25,15 @@
     </div>
     <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;"  no-lines>
       <img item-left src="assets/img/sprite/tellphone_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
-      <input type="text" placeholder="输入手机号" [(ngModel)]="mobile" style="width:100%;border:none;border-radius: 5px;">
-      <button *ngIf="!veriCountDown" (click)="getVericode()" ion-button small round item-right style="padding-left:2px;padding-right:2px;margin-right:0px;font-size:0.7em;">发送验证码</button>
-      <button *ngIf="veriCountDown"  ion-button small round item-right style="padding-left:2px;padding-right:2px;margin-right:0px;font-size:0.7em;">{{veriCountDown}}秒后可重发</button>
+      <input type="text" placeholder="输入邮箱" [(ngModel)]="email" style="width:100%;border:none;border-radius: 5px;">
+    </ion-item>
+    <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;"  no-lines>
+      <img item-left src="assets/img/sprite/tellphone_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
+      <input type="text" placeholder="输入姓名" [(ngModel)]="name" style="width:100%;border:none;border-radius: 5px;">
     </ion-item>
     <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
       <img item-left src="assets/img/sprite/password_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
-      <input type="text" placeholder="输入验证码" [(ngModel)]="validateCode" style="width:100%;border:none;border-radius: 5px;">
+      <input type="text" placeholder="输入密码" [(ngModel)]="password" style="width:100%;border:none;border-radius: 5px;">
     </ion-item>
 
     <div style="margin:40px 10vw;width:80vw;">

@@ -27,7 +27,7 @@ export class Mine {
     message = Message
 
     items = [1, 2, 3, 4, 5];
-    // tokens: any;
+    token: any;
     userInfo: any;
     messagesTotal:any = 0
     baseURL:any
@@ -37,25 +37,20 @@ export class Mine {
 
     ionViewWillEnter() {
         let vm = this
-        if (localStorage.getItem('userInfo')){
-            this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+        if (localStorage.getItem('token')){
+            this.token = localStorage.getItem('token')
         } else {
-            this.userInfo = ''
+            this.token = ''
         }
-        setTimeout(()=>{
-            vm.messagesTotal = localStorage.getItem('messagesTotal')
-            console.log('----mine-page-messagesTotal----',vm.messagesTotal);
-        },500)
+        
         this.baseURL = axios.defaults.baseURL 
     }
   
     logout() {
-        localStorage.setItem('tokens', '')
-        localStorage.setItem('userInfo', '')
-        localStorage.setItem('messagesTotal','')
-        this.userInfo = ''
+        localStorage.setItem('token', '')
+        this.token = ''
         delete axios.defaults.headers.common["Authorization"]
-        this.events.publish('messages:update')
+        // this.events.publish('messages:update')
         // this.navCtrl.setRoot(MyApp)
         this.navCtrl.parent.select(0);
     }

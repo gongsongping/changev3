@@ -16,55 +16,61 @@ declare var BMap: any;
     templateUrl: 'home.html'
 })
 export class Home {
-    houses = [];
-    start = 0;
-    dataLength = 10;
-    housesTotal: any;
-    textTitle = 0;
-    renting = [
-       {
-          textTitle:0, 
-          title:'买房/卖房'
-       },
-       {
-          textTitle:1, 
-          title:'租房/出租'
-       }
-    ] 
+
+//   doRefresh = function() {
+//     // $state.go('tab.home', null, {reload: true})
+//     // $window.location.reload(true)
+//     $state.go($state.current, {}, {reload: true})
+//     $broadcast('scroll.refreshComplete')
+//   }
+
+// })
+
+// .controller('WriteCtrl', function($scope, $http, $state,$ionicHistory, $rootScope, $resource, Post, Qiniu) {
+//   $rootScope.$broadcast('qiniuUPdate')
+//   var hiddenPo = $resource($rootScope.baseUrl + '/api/hiddenposts/:id')
+//   posts = []; page = 0; lastId = 0; limit = 5; dataLength = limit
+//   loadMore = function() {
+//     if (dataLength == limit){
+//       hiddenPo.query({page: page, lastId: lastId})
+//       .$promise.then(function(data) {
+//         // console.log(JSON.stringify(data))
+//         dataLength = data.length
+//         posts = posts.concat(data)
+//         //Stop the ion-refresher from spinning
+//         page += 1
+//         if (data.length == limit) {lastId = data[limit-1].id}
+//         $broadcast('scroll.infiniteScrollComplete')
+//       })
+//       // $broadcast('scroll.infiniteScrollComplete')
+//     }
+//   }
     constructor(public navCtrl: NavController, private testService: TestService, public events: Events) { }
+    
+    posts = []; page = 0; lastId = 0; limit = 5; dataLength = 5
     loadMore(infiniteScroll) {
-        let vm = this;
-        let params = {
-            params: {
-                start: vm.start
+       let vm = this
+        axios.get('/api/posts?page='+vm.page+'&lastId='+vm.lastId)
+        .then(function(res) {
+            vm.dataLength = res.data.length
+            vm.posts = vm.posts.concat(res.data)
+            vm.page += 1
+            if (res.data.length == vm.limit) {vm.lastId = res.data[vm.limit-1].id}
+            if (infiniteScroll) {
+                infiniteScroll.complete();
             }
-        }
-        axios.get('/api/housing/houses?size=10&status=2', params)
-            .then(function (res) {
-                vm.houses = vm.houses.concat(res.data.data);
-                vm.dataLength = res.data.data.length
-                // vm.housesTotal = res.data.total
-                vm.start = vm.start + 1
-                if (infiniteScroll) {
-                    infiniteScroll.complete();
-                }
-            })
+        })   
     }
     ionViewWillEnter() {
-        //refresh token
-        // this.events.publish('tokens:refresh', 'user', 'time');// red refresh token
-        this.events.publish('messages:update')
+       
     }
     doRefresh(refresher) {
-        this.houses = [];
-        this.start = 0;
-        this.dataLength = 10;
+        let vm = this
+        vm.posts = []; vm.page = 0; vm.lastId = 0; vm.limit = 5; vm.dataLength = 5
         this.loadMore(refresher)
     }
     ionViewDidLoad() {
-        setTimeout(()=>{
-          this.loadMore(false)
-        },1000)
+        this.loadMore(false)
     }
     goDetail(h) {
         this.navCtrl.push(Housedetails, { house: h })
@@ -76,11 +82,7 @@ export class Home {
             this.navCtrl.push(Login)
         }
     }
-    // 选项卡
-    rentingClick(index){
-        this.textTitle = index.textTitle;
-    }
-
+   
     goBuy(){
       this.navCtrl.parent.select(1);
     }
