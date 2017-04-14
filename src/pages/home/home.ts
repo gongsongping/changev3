@@ -47,10 +47,19 @@ export class Home {
 //   }
     constructor(public navCtrl: NavController, private testService: TestService, public events: Events) { }
     
+    token
     posts = []; page = 0; lastId = 0; limit = 5; dataLength = 5
     loadMore(infiniteScroll) {
        let vm = this
-        axios.get('/api/posts?page='+vm.page+'&lastId='+vm.lastId)
+        vm.token = localStorage.getItem('token')
+        let url
+        if (vm.token){
+            url = '/api/posts'
+        } else {
+            url = '/api/discoverposts'
+        }
+        //    '/api/discoverposts'
+        axios.get(url+'?page='+vm.page+'&lastId='+vm.lastId)
         .then(function(res) {
             vm.dataLength = res.data.length
             vm.posts = vm.posts.concat(res.data)
@@ -65,12 +74,18 @@ export class Home {
        
     }
     doRefresh(refresher) {
-        let vm = this
-        vm.posts = []; vm.page = 0; vm.lastId = 0; vm.limit = 5; vm.dataLength = 5
-        this.loadMore(refresher)
+      let vm = this
+      vm.posts = []; vm.page = 0; vm.lastId = 0; vm.limit = 5; vm.dataLength = 5
+      this.loadMore(refresher)
     }
     ionViewDidLoad() {
-        this.loadMore(false)
+        let vm = this
+        
+        this.events.subscribe('refresh:posts', (user, time) => {
+            vm.posts = []; vm.page = 0; vm.lastId = 0; vm.limit = 5; vm.dataLength = 5
+            vm.loadMore(false)
+        });
+        vm.events.publish('refresh:posts', 'user', 'time');
     }
     goDetail(h) {
         this.navCtrl.push(Housedetails, { house: h })

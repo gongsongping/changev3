@@ -50,7 +50,7 @@ export class Mine {
         localStorage.setItem('token', '')
         this.token = ''
         delete axios.defaults.headers.common["Authorization"]
-        // this.events.publish('messages:update')
+        this.events.publish('refresh:posts', 'user', 'time');
         // this.navCtrl.setRoot(MyApp)
         this.navCtrl.parent.select(0);
     }

@@ -36,7 +36,7 @@ export class Login {
         }).then(function (res) {
                 localStorage.setItem('token', res.data.token)
                 axios.defaults.headers.common['Authorization'] = "token =" + res.data.token
-                // vm.events.publish('user:login')
+                vm.events.publish('refresh:posts', 'user', 'time');
                 vm.navCtrl.pop()
             })
             .catch(function (error) {
