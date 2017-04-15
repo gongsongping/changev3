@@ -4,12 +4,7 @@ import { NavController, Events } from 'ionic-angular';
 import axios from 'axios';
 import { Login } from '../login/login';
 import { JwtHelper } from 'angular2-jwt';
-import { About } from '../about/about';
-import { Consultant } from '../consultant/consultant';
-import { Servicecall } from '../servicecall/servicecall';
-import { Visitrecord } from '../visitrecord/visitrecord';
-import { Sellrecord } from '../sellrecord/sellrecord';
-import { Message } from '../message/message';
+
 
 
 @Component({
@@ -19,12 +14,6 @@ import { Message } from '../message/message';
 
 export class Mine {
     login = Login;
-    about = About
-    consultant = Consultant
-    servicecall = Servicecall
-    visitrecord = Visitrecord
-    sellrecord = Sellrecord
-    message = Message
 
     items = [1, 2, 3, 4, 5];
     token: any;

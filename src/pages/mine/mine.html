@@ -35,33 +35,6 @@
       <button *ngIf="!token" [navPush]="login" ion-button round small color="light">登录</button>
     </div>
   </div>
-  <div class='mine-2'>
-    <div (click)='goTo(visitrecord)' class='mine-2-item'>
-      <img src="assets/img/sprite/see_btn_mine.png" height='50%' width='50%'>
-      <p>看房记录</p>
-    </div>
-    <div (click)='goTo(sellrecord)' class='mine-2-item'>
-      <img src="assets/img/sprite/sell_btn_mine.png" height='50%' width='50%'>
-      <p>卖房记录</p>
-    </div>
-
-    <div (click)='goTo(consultant)' class='mine-2-item'>
-      <img src="assets/img/sprite/counselor_btn_mine.png" height='50%' width='50%'>
-      <p>我的顾问</p>
-    </div>
-    <div [navPush]='servicecall' class='mine-2-item'>
-      <img src="assets/img/sprite/service_btn_mine.png" height='50%' width='50%'>
-      <p>客服电话</p>
-    </div>
-  </div>
-  <div class="mine-3">
-    <ion-item [navPush]='about' detail-push>
-       <i item-left><img src="assets/img/icon/_0003_about.png" width="25"/></i>
-      关于壁虎
-    </ion-item>
-  </div>
-  <div *ngIf="baseURL=='http://60.205.169.195:7060'||baseURL=='http://60.205.169.195:7069'">
-    <p style="font-size:0.5em;color:tomato;">测试{{baseURL}}</p>
-  </div>
+  
 
 </ion-content>
