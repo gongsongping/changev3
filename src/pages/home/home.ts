@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 import { NavController, Events } from 'ionic-angular';
 import axios from 'axios';
-import { Housedetails } from '../housedetails/housedetails';
+import { Postdetails } from '../postdetails/postdetails';
+import { Userposts } from '../userposts/userposts';
 import { Precise } from '../precise/precise';
 import { Login } from '../login/login';
 
@@ -45,6 +46,8 @@ export class Home {
 //       // $broadcast('scroll.infiniteScrollComplete')
 //     }
 //   }
+    postdetails = Postdetails
+    userposts = Userposts
     constructor(public navCtrl: NavController, private testService: TestService, public events: Events) { }
     
     token
@@ -70,9 +73,8 @@ export class Home {
             }
         })   
     }
-    ionViewWillEnter() {
-       
-    }
+    ionViewWillEnter() { }
+
     doRefresh(refresher) {
       let vm = this
       vm.posts = []; vm.page = 0; vm.lastId = 0; vm.limit = 5; vm.dataLength = 5
@@ -87,8 +89,13 @@ export class Home {
         });
         vm.events.publish('refresh:posts', 'user', 'time');
     }
-    goDetail(h) {
-        this.navCtrl.push(Housedetails, { house: h })
+
+    pushTo(page, post) {
+        if ((page == this.userposts)&&(!this.token)){
+            this.navCtrl.push(Login)
+        } else {
+            this.navCtrl.push(page, { post: post })
+        }
     }
     goPrecise() {
         if (window.localStorage.getItem('tokens')) {
@@ -98,7 +105,5 @@ export class Home {
         }
     }
    
-    goBuy(){
-      this.navCtrl.parent.select(1);
-    }
+
 }

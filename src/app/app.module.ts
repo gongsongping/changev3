@@ -7,8 +7,9 @@ import { Tabs } from '../pages/tabs/tabs';
 import { Buy } from '../pages/buy/buy';
 import { Mine } from '../pages/mine/mine';
 import { Login } from '../pages/login/login';
-import { Housedetails } from '../pages/housedetails/housedetails';
+import { Postdetails } from '../pages/postdetails/postdetails';
 import { Precise } from '../pages/precise/precise';
+import { Userposts } from '../pages/userposts/userposts';
 
 import { NestedCom, House, TestService, ImgPipe, HouseTypePipe, Distribution } from '../providers/services';
 
@@ -31,14 +32,15 @@ enableProdMode();
     Buy,
     Mine,
     Login,
-    Housedetails,
+    Postdetails,
     Precise,
     Tabs,
     ImgPipe,
     NestedCom,
     House,
     Distribution,
-    HouseTypePipe
+    HouseTypePipe,
+    Userposts
   ],
   imports: [
     BrowserModule,
@@ -56,9 +58,10 @@ enableProdMode();
     Buy,
     Mine,
     Login,
-    Housedetails,
+    Postdetails,
     Precise,
-    Tabs
+    Tabs,
+    Userposts
   ],
   providers: [
     SplashScreen,

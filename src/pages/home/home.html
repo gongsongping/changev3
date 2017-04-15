@@ -10,35 +10,30 @@
         </ion-refresher-content>
     </ion-refresher>
 
-
-    <div style="padding:0px 8px;">
-        <!--<div *ngFor="let p of posts ; let i = index" style="border-bottom:1px solid #ededed;">
-            <p>{{p.content}}</p>
-        </div>-->
-    </div>
+    <div style="padding:0px 8px;"></div>
         
      <ion-card *ngFor="let p of posts ; let i = index">
-        <ion-item>
+        <ion-item (click)='pushTo(userposts, p)'>
             <ion-avatar item-left>
                 <img src="{{p.user?.avatar}}">
             </ion-avatar>
             <h2>{{p.user?.name}}</h2>
-            <p>November 5, 1955</p>
+            <p>{{p.created_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>
         </ion-item>
 
-        <img *ngIf='p.url' src="{{p.url}}">
+        <img (click)='pushTo(postdetails, p)' *ngIf='p.url' src="{{p.url}}">
 
-        <ion-card-content>
+        <ion-card-content (click)='pushTo(postdetails, p)' *ngIf='p.content'>
             <p>{{p.content}}</p>
         </ion-card-content>
 
-        <ion-row>
-            <ion-col>
+        <ion-row (click)='pushTo(postdetails, p)'>
+            <!--<ion-col>
                 <button ion-button icon-left clear small>
                     <ion-icon name="thumbs-up"></ion-icon>
                     <div>12 Likes</div>
                 </button>
-            </ion-col>
+            </ion-col>-->
             <ion-col>
                 <button ion-button icon-left clear small>
                     <ion-icon name="text"></ion-icon>
