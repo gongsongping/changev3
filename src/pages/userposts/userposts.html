@@ -1,0 +1,56 @@
+<!--
+  Generated template for the Userposts page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+      <ion-avatar item-left>
+          <img src="{{post.user?.avatar}}">
+      </ion-avatar>
+      <h2>{{post.user?.name}}</h2>
+      <!--<p>{{post.created_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>-->
+  </ion-item>
+<ion-card *ngFor="let p of posts ; let i = index">
+        <!--<ion-item (click)='pushTo(userposts, p)'>
+            <ion-avatar item-left>
+                <img src="{{p.user?.avatar}}">
+            </ion-avatar>
+            <h2>{{p.user?.name}}</h2>
+            <p>{{p.created_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>
+        </ion-item>-->
+
+        <img (click)='pushTo(postdetails, p)' *ngIf='p.url' src="{{p.url}}">
+
+        <ion-card-content (click)='pushTo(postdetails, p)' *ngIf='p.content'>
+            <p>{{p.content}}</p>
+        </ion-card-content>
+
+        <ion-row (click)='pushTo(postdetails, p)'>
+            
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="text"></ion-icon>
+                    <div>{{p.comments_c}}</div>
+                </button>
+            </ion-col>
+           
+        </ion-row>
+    </ion-card>
+    <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
+   
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='70%'>
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在努力加载中...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar mode='ios'>
+        <ion-title text-center></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-item (click)='pushTo(userposts, post)'>
+            <ion-avatar item-left>
+                <img src="{{post.user?.avatar}}">
+            </ion-avatar>
+            <h2>{{post.user?.name}}</h2>
+            <p>{{post.created_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>
+        </ion-item>
+
+        <img *ngIf='post.url' src="{{post.url}}">
+
+        <ion-card-content *ngIf='post.content'>
+            <p>{{post.content}}</p>
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="text"></ion-icon>
+                    <div>{{post.comments_c}}</div>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+    <ion-item *ngFor='let c of comments'>
+        <ion-avatar item-left>
+           <img src="{{c.user?.avatar}}">
+        </ion-avatar>
+        <!--<h2>Finn</h2>-->
+        <!--<h3>Don't Know What To Do!</h3>-->
+        <p>{{c.content}}</p>
+        <ion-note>ll</ion-note>
+    </ion-item>
+</ion-content>
