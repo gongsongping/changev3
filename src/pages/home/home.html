@@ -9,8 +9,20 @@
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="刷新" refreshingSpinner="circles" refreshingText="刷新...">
         </ion-refresher-content>
     </ion-refresher>
-
-    <div style="padding:0px 8px;"></div>
+    <div style='margin:10px;'>
+        <textarea [(ngModel)]="content" placeholder="say something" style='width:100%;height:20vw;'></textarea>
+    </div>
+    <ion-item no-lines>
+        <ion-label text-right><span *ngIf='show' style='color:#265FDF;'>点击隐藏</span></ion-label>
+        <ion-toggle color='danger' mode='ios'  [(ngModel)]="show"></ion-toggle>
+    </ion-item>
+    <!--<ion-item>
+        <ion-checkbox color='danger' mode='ios' [(ngModel)]="sausage"></ion-checkbox>
+        <ion-label>Sausage</ion-label>
+    </ion-item>-->
+    <div style='margin:0px 10vw;'>
+        <button (click)='sendPost()' ion-button block >提交</button>
+    </div>
         
      <ion-card *ngFor="let p of posts ; let i = index">
         <ion-item (click)='pushTo(userposts, p)'>
@@ -50,7 +62,7 @@
     <div *ngIf='!dataLength' style='padding:30px;text-align: center;'>没有了!</div>
     <ion-fab bottom right #fab>
         <button ion-fab (click)="goPrecise()" style='font-size: 0.8em;font-weight: 600;'>
-            为您找房
+            我的表达
         </button>
     </ion-fab>
 

@@ -46,6 +46,35 @@ export class Home {
 //       // $broadcast('scroll.infiniteScrollComplete')
 //     }
 //   }
+// ngFileUp: function(f) {
+//       return Upload.upload({
+//         url: "http://upload.qiniu.com",
+//         data: {file: f, key: new Date(), token: $window.localStorage.qiniuToken}
+//       })
+//     }
+    show = true
+    content
+    sendPost(){
+        let vm = this
+        if (!vm.token){
+            vm.navCtrl.push(Login)
+            return
+        }
+        if (!vm.content){alert('不能为空');return}
+        axios({
+            method:'post',
+            url:'/api/posts',
+            data:{content: vm.content, hidden:!vm.show}
+        }).then(function (res) {
+            vm.content = ''
+            if (vm.show){
+                vm.doRefresh(false)
+            } else {
+                vm.navCtrl.push(Precise)
+            }
+            vm.show = true
+        })
+    }
     postdetails = Postdetails
     userposts = Userposts
     constructor(public navCtrl: NavController, private testService: TestService, public events: Events) { }
@@ -82,7 +111,7 @@ export class Home {
     }
     ionViewDidLoad() {
         let vm = this
-        
+        vm.token = localStorage.getItem('token')        
         this.events.subscribe('refresh:posts', (user, time) => {
             vm.posts = []; vm.page = 0; vm.lastId = 0; vm.limit = 5; vm.dataLength = 5
             vm.loadMore(false)
@@ -98,7 +127,7 @@ export class Home {
         }
     }
     goPrecise() {
-        if (window.localStorage.getItem('tokens')) {
+        if (this.token) {
             this.navCtrl.push(Precise)
         } else {
             this.navCtrl.push(Login)
