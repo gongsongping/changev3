@@ -7,39 +7,77 @@
 <ion-header>
 
   <ion-navbar mode='ios'>
-    <ion-title text-center>登录</ion-title>
+    <!--<ion-title text-center>登录</ion-title>-->
+    <ion-segment [(ngModel)]="sign" color="primary">
+      <ion-segment-button value="signin">
+          登录
+      </ion-segment-button>
+      <ion-segment-button value="signup">
+          注册
+      </ion-segment-button>
+    </ion-segment>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="login-bg-img">
-  <div class='top'>
-    <!--<h1>壁虎好房</h1>
-    <h5>开启互联网买房卖房新篇章</h5>-->
-  </div>
-  <div class='bottom' style="padding-top:20px;">
+  <div [ngSwitch]="sign">
+    <div *ngSwitchCase="'signin'">
+      <div class='top'> </div>
+      <div class='bottom' style="padding-top:20px;">
 
-    <div style="margin:10px 10vw;width:80vw;position:relative;border-radius: 6px;">
-      <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
-    </div>
-    <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;"  no-lines>
-      <img item-left src="assets/img/sprite/tellphone_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
-      <input type="text" placeholder="输入邮箱" [(ngModel)]="email" style="width:100%;border:none;border-radius: 5px;">
-    </ion-item>
-    <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;"  no-lines>
-      <img item-left src="assets/img/sprite/tellphone_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
-      <input type="text" placeholder="输入姓名" [(ngModel)]="name" style="width:100%;border:none;border-radius: 5px;">
-    </ion-item>
-    <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
-      <img item-left src="assets/img/sprite/password_icon_home.png" style='height:25px;width:15px;margin-left:5px;' alt="">
-      <input type="text" placeholder="输入密码" [(ngModel)]="password" style="width:100%;border:none;border-radius: 5px;">
-    </ion-item>
+        <div style="margin:10px 10vw;width:80vw;position:relative;border-radius: 6px;">
+          <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
+        </div>
+        <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
+          <ion-icon item-left name="mail" color='primary' style='position:relative;left:3px;'></ion-icon>
+          <input type="text" placeholder="输入邮箱" [(ngModel)]="signInData.email" style="width:100%;border:none;border-radius: 5px;">
+        </ion-item>
+        <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
+          <ion-icon item-left name="key" color='primary' style='position:relative;left:3px;'></ion-icon>
+          <input type="password" placeholder="输入密码" [(ngModel)]="signInData.password" style="width:100%;border:none;border-radius: 5px;">
+        </ion-item>
 
-    <div style="margin:40px 10vw;width:80vw;">
-      <button (click)="login()" ion-button full round mode='ios' color="primary">登录</button>
+        <div style="margin:40px 10vw;width:80vw;">
+          <button (click)="login()" ion-button full round mode='ios' color="primary">登录</button>
+        </div>
+
+      </div>
     </div>
 
+    <div *ngSwitchCase="'signup'">
+      <div class='top'></div>
+
+      <div class='bottom' style="padding-top:20px;">
+
+        <div style="margin:10px 10vw;width:80vw;position:relative;border-radius: 6px;">
+          <p *ngIf='loginErr' style="text-align: center;color:tomato;">{{loginErr}}</p>
+        </div>
+        <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
+          <ion-icon item-left name="person" color='primary' style='position:relative;left:3px;'></ion-icon>
+          <input type="text" placeholder="输入名字" [(ngModel)]="signUpData.name" style="width:100%;border:none;border-radius: 5px;">
+        </ion-item>
+        <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
+          <ion-icon item-left name="mail" color='primary' style='position:relative;left:3px;'></ion-icon>
+          <input type="text" placeholder="输入邮箱" [(ngModel)]="signUpData.email" style="width:100%;border:none;border-radius: 5px;">
+        </ion-item>
+        <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
+          <ion-icon item-left name="key" color='primary' style='position:relative;left:3px;'></ion-icon>
+          <input type="password" placeholder="输入密码" [(ngModel)]="signUpData.password" style="width:100%;border:none;border-radius: 5px;">
+        </ion-item>
+        <ion-item style="margin:10px 10vw;padding-left:3px;width:80vw;border-radius: 6px;border:none;" no-lines>
+          <ion-icon item-left name="key" color='primary' style='position:relative;left:3px;'></ion-icon>
+          <input type="password" placeholder="再次输入密码" [(ngModel)]="signUpData.password_confirmation" style="width:100%;border:none;border-radius: 5px;">
+        </ion-item>
+
+        <div style="margin:40px 10vw;width:80vw;">
+          <button (click)="signUp()" ion-button full round mode='ios' color="primary">提交</button>
+        </div>
+
+      </div>
+    </div>
   </div>
+
 
 </ion-content>

@@ -39,15 +39,13 @@ export class MyApp {
       // axios.defaults.baseURL = 'http://changiif.com'
       // axios.defaults.baseURL = 'http://localhost:5000';
 
-      console.log('----root app---- Page will init base url', axios.defaults.baseURL);
       this.events.subscribe('user:login', (user, time) => {
-        // user and time are the same arguments passed in `events.publish(user, time)`
         console.log('----events refresh', user, 'at', time);
         let vm = this
         if (localStorage.getItem('token')) {
-            this.token = localStorage.getItem('token')
-            console.log('------',this.token)
-            axios.defaults.headers.common['Authorization'] = "token =" + this.token
+            vm.token = localStorage.getItem('token')
+            console.log('------',localStorage.getItem('token'),vm.token)
+            axios.defaults.headers.common['Authorization'] = "token =" + vm.token
         }
       });
       this.events.publish('user:login', 'user', 'time');
