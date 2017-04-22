@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar mode='ios' >
     <ion-title></ion-title>
   </ion-navbar>
 
@@ -14,6 +14,9 @@
 
 
 <ion-content>
+   <div *ngIf='!posts.length' style='width:100vw;text-align:center;'>
+        <ion-spinner name="bubbles"  style='background:white;border-radius:5px;'></ion-spinner>
+   </div>
   <ion-item>
       <ion-avatar item-left>
           <img src="{{post.user?.avatar}}">

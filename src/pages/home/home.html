@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content>
+   <div *ngIf='!posts.length' style='width:100vw;text-align:center;'>
+        <ion-spinner name="bubbles"  style='background:white;border-radius:5px;'></ion-spinner>
+   </div>
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="刷新" refreshingSpinner="circles" refreshingText="刷新...">
         </ion-refresher-content>
@@ -66,7 +69,7 @@
         </button>
     </ion-fab>
 
-    <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='70%'>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" [enabled]='!!dataLength' threshold='5%'>
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在努力加载中...">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>

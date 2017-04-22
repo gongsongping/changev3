@@ -14,7 +14,9 @@
 
 
 <ion-content>
-
+   <div *ngIf='!posts.length' style='width:100vw;text-align:center;'>
+        <ion-spinner name="bubbles"  style='background:white;border-radius:5px;'></ion-spinner>
+   </div>
   <ion-item *ngFor="let p of posts ; let i = index">
     <p>{{p.created_at | date:"yyyy-MM-dd HH:mm:ss"}}</p>
     <h2>{{p.content}}</h2>

@@ -29,7 +29,7 @@
         </ion-row>
     </ion-card>
     <ion-item *ngFor='let c of comments'>
-        <ion-avatar item-left>
+        <ion-avatar item-left (click)='pushTo(userposts, post)'>
            <img src="{{c.user?.avatar}}">
         </ion-avatar>
         <!--<h2>Finn</h2>-->

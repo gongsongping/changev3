@@ -1,5 +1,5 @@
 import { Component, ViewChild, style, state, animate, transition, trigger } from '@angular/core';
-import { NavController,Tabs } from 'ionic-angular';
+import { NavController,Tabs, LoadingController } from 'ionic-angular';
 import { Precise } from '../precise/precise';
 import { Login } from '../login/login';
 import axios from 'axios';
@@ -51,7 +51,7 @@ import { Housedetails } from '../housedetails/housedetails';
 export class Buy {
   @ViewChild('myTabs') tabRef: Tabs;
   // userInfo:any;
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {}
   
   ionViewDidLoad() {
     // this.tabRef.select(1);
@@ -60,13 +60,21 @@ export class Buy {
     this.loadMore(false)
     this.loadMore(false)
   }
-
+  
+  loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+  spinner = false
   photos = []; page = 0; lastId = 0; limit = 5; dataLength = 5
   loadMore (infiniteScroll) {
       let vm = this
+      vm.spinner = true 
       axios.get('/api/photos?page='+vm.page+'&lastId='+vm.lastId)
        .then(function(res) {
               // console.log(res.data.data)
+            setTimeout(()=>{
+               vm.spinner = false
+            },500)  
             vm.photos = vm.photos.concat(res.data)
             vm.page += 1
             if (infiniteScroll) {
