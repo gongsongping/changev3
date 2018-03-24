@@ -5,12 +5,12 @@ from datetime import datetime
 from fabric.api import *
 import os
 # 登录用户和主机名：
-env.user = 'gsp'
-env.hosts = ['www.changiif.com'] # 如果有多个主机，fabric会自动依次部署
+env.user = 'root'
+env.hosts = ['45.77.134.158'] # 如果有多个主机，fabric会自动依次部署
 env.password='gsp191954'
 
 def test():
-    deploy_to = '/home/gsp/wd/change/public/change'
+    deploy_to = '/home/public'
     local('cd www&&ls')
     local('ls')    
     with cd(deploy_to):
@@ -21,12 +21,12 @@ def test():
 # get("/backup/db.gz", "./db.gz")
 
 def upwww():
-     #delete .map file
+    #delete .map file
     for f in os.listdir('./www/build'):
         if '.map' in f:
             os.remove('./www/build/'+f)
             
-    deploy_to = '/home/gsp/wd/change/public/changev3'
+    deploy_to = '/home/public/changev3'
     local('cd www&&tar -zcf www.tar.gz .')    
     # local('tar -zcf www.tar.gz .')    
     # local('scp www.tar.gz gsp@changiif.com:%s'%(deploy_to))
@@ -38,12 +38,22 @@ def upwww():
 
     
 def upapk():
-    deploy_to = '/home/gsp/wd/change/public/changev3'
-    local('cd platforms/android/build/outputs/apk&&mv android-debug.apk changiif.apk')    
-    # local('mv android-debug.apk changiif.apk')    
+    deploy_to = '/home/public/changev3'    
+    local('cd platforms/android/build/outputs/apk&&mv android-debug.apk changev3.apk')    
+    # local('mv android-debug.apk changev3.apk')    
     # local('scp www.tar.gz gsp@changiif.com:%s'%(deploy_to))
-    put('platforms/android/build/outputs/apk/changiif.apk', deploy_to)
-    local('rm www.tar.gz')
+    # get('/remote/path/','/local/path/')
+    put('platforms/android/build/outputs/apk/changev3.apk', deploy_to)
+    # local('rm www.tar.gz')
+
+def nginx():
+    deploy_to = '/home/public'        
+    put('nginx.conf', '/etc/nginx/nginx.conf')
+    # put('nginx.self.conf', '/etc/nginx/nginx.conf')
+    # put('nginx.fankai.conf', '/etc/nginx/nginx.conf')
+    # get('/root/wd/public/nginx.conf','nginx.conf')
+    with cd(deploy_to):
+        run('service nginx restart')
 
 def pack():
     ' 定义一个pack任务 '
